@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>WB TET 2025 Quiz App</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>🎓 Mock Test 2025</h1>
+    <div id="timer">Time Remaining: 30:00</div>
+    <select id="subjectSelector">
+      <option value="">Select Subject</option>
+      <option value="math">Mathematics</option>
+      <option value="science">Science</option>
+      <option value="social_science">Social Science</option>
+      <option value="bengali">Bengali</option>
+      <option value="english">English</option>
+    </select>
+    <div id="quiz"></div>
+    <div id="result" class="result"></div>
+    <button id="restartBtn" style="display:none;">Restart</button>
+  </div>
+  <script src="math.js"></script>
+  <script src="science.js"></script>
+  <script src="social_science.js"></script>
+  <script src="bengali.js"></script>
+  <script src="english.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
