@@ -92,7 +92,7 @@ window.mathQuestions = [
   {
     question: "The product of two consecutive odd numbers is 2025. What are the numbers?",
     options: ["44, 45", "45, 47", "49, 51", "39, 41"],
-    answer: "45, 45"
+    answer: "45, 47"
   },
   {
     question: "In a right triangle, if one acute angle is 35°, what is the other?",
@@ -115,9 +115,9 @@ window.mathQuestions = [
     answer: "3.14"
   },
   {
-    question: "A fraction becomes 1/2 when 5 is subtracted from numerator and denominator, remains unchanged when 2 is added to both. What is the fraction?",
-    options: ["7/9", "8/13", "9/14", "11/16"],
-    answer: "7/9"
+    question: "A fraction becomes 1/2 when 5 is subtracted from numerator and denominator, and becomes 3/4 when 2 is added to both. What is the fraction?",
+    options: ["17/24", "7/12", "13/22", "5/9"],
+    answer: "17/24"
   },
   {
     question: "If 40% of a number is 84, the number is",
@@ -150,5 +150,6 @@ window.mathQuestions = [
     answer: "6"
   }
 ];
+
 
 
