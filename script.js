@@ -136,7 +136,7 @@ function renderQuestion() {
     // Move to next subject
     currentSubjectIndex++;
     if (currentSubjectIndex < subjectOrder.length && remainingTime > 0) {
-      loadSubject(subjectOrder[currentSubjectIndex]);
+      setTimeout(() => loadSubject(subjectOrder[currentSubjectIndex]), 100);
     } else {
       finishExam();
     }
@@ -147,41 +147,50 @@ function renderQuestion() {
   if (!q || !q.question || !q.options || !q.answer) {
     console.error('Invalid question data at index:', current);
     current++;
-    renderQuestion();
+    setTimeout(() => renderQuestion(), 50);
     return;
   }
-  quizEl.innerHTML = `
-    <div class="question">${q.question}</div>
-    <div id="optionArea" class="options">
-      ${q.options
-        .map(
-          (opt, i) =>
-            `<button class="option-btn" data-idx="${i}">${opt}</button>`
-        )
-        .join("")}
-    </div>
-    <div id="feedback" style="margin:12px 0; font-size:1.15em; font-weight:bold;"></div>
-    <div style="margin:10px 0;font-weight:bold;">
-      Subject: ${subjectOrder[currentSubjectIndex]
-        .replace("_", " ")
-        .toUpperCase()} | Q${current + 1} / ${questions.length}
-    </div>
-  `;
+  
+  // Clear previous content first
+  quizEl.innerHTML = '';
+  
+  // Add content with small delay for mobile rendering
+  setTimeout(() => {
+    quizEl.innerHTML = `
+      <div class="question">${q.question}</div>
+      <div id="optionArea" class="options">
+        ${q.options
+          .map(
+            (opt, i) =>
+              `<button class="option-btn" style="touch-action: manipulation;">${opt}</button>`
+          )
+          .join("")}
+      </div>
+      <div id="feedback" style="margin:12px 0; font-size:1.15em; font-weight:bold;"></div>
+      <div style="margin:10px 0;font-weight:bold;">
+        Subject: ${subjectOrder[currentSubjectIndex]
+          .replace("_", " ")
+          .toUpperCase()} | Q${current + 1} / ${questions.length}
+      </div>
+    `;
 
-  const optionBtns = Array.from(document.querySelectorAll(".option-btn"));
-  const feedbackEl = document.getElementById("feedback");
-  let isAnswered = false;
+    const optionBtns = Array.from(document.querySelectorAll(".option-btn"));
+    const feedbackEl = document.getElementById("feedback");
+    let isAnswered = false;
 
-  optionBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+  optionBtns.forEach((btn, index) => {
+    const handleAnswer = () => {
       if (isAnswered) return;
       isAnswered = true;
       
       try {
         const correctIndex = q.options.findIndex((opt) => opt === q.answer);
-        const selectedIndex = parseInt(btn.getAttribute("data-idx"));
+        const selectedIndex = index;
 
-        optionBtns.forEach((b) => (b.disabled = true));
+        optionBtns.forEach((b) => {
+          b.disabled = true;
+          b.style.pointerEvents = 'none';
+        });
 
         if (selectedIndex === correctIndex) {
           btn.style.background = "#46B546";
@@ -207,14 +216,21 @@ function renderQuestion() {
         setTimeout(() => {
           current++;
           renderQuestion();
-        }, 1200);
+        }, 800);
       } catch (error) {
         console.error('Error in answer processing:', error);
         current++;
         renderQuestion();
       }
+    };
+    
+    btn.addEventListener("click", handleAnswer);
+    btn.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      handleAnswer();
     });
   });
+  }, 50);
 }
 
 function finishExam() {
