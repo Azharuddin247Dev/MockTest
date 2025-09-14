@@ -1,19 +1,16 @@
-// Initialize quiz state
+let userName = "";
 let questions = [];
 let current = 0;
 let score = 0;
-let selectedSubject = "";
-let timerInterval = null;
-let remainingTime = 1800; // 150 minutes = 150 * 60 = 9000 seconds
+let subjectOrder = ["math", "science", "social_science", "bengali", "english"];
+let currentSubjectIndex = 0;
+let results = [];
+let timer; // interval
+let remainingTime = 9000; // 150 minutes in seconds
 
-// Cache DOM elements
-const quizEl = document.getElementById("quiz");
-const resultEl = document.getElementById("result");
-const restartBtn = document.getElementById("restartBtn");
-const subjectSelector = document.getElementById("subjectSelector");
-const timerEl = document.getElementById("timer");
+const container = document.querySelector(".quiz-container");
 
-// Mapping subject names to global arrays from subject files
+// Prepare subject data mapping (subject files must define these vars)
 const subjects = {
   math: window.mathQuestions || [],
   science: window.scienceQuestions || [],
@@ -22,218 +19,187 @@ const subjects = {
   english: window.englishQuestions || [],
 };
 
-// Listen for subject selection changes
-subjectSelector.addEventListener("change", () => {
-  const selectedSubjectValue = subjectSelector.value;
-  if (!selectedSubjectValue) {
-    resetQuizDisplay();
-    clearInterval(timerInterval);
-    timerEl.textContent = "Time Remaining: 30:00";
-    return;
-  }
-  selectedSubject = selectedSubjectValue;
-  remainingTime = 30 * 60; // reset timer
-  startTimer();
-  loadSubject(selectedSubjectValue);
-});
+// Initialize app by asking user name
+function showNameInput() {
+  container.innerHTML = `
+    <h1>Mock Test</h1>
+    <div id="nameBox">
+      <label for="userNameInput">Enter your name:</label><br/>
+      <input id="userNameInput" type="text" required autofocus style="padding:8px 12px; font-size:1.1em; border-radius:6px; border:1px solid #ccc;" />
+      <button id="startTestBtn" style="margin-left:8px; padding:8px 16px; font-size:1.1em; border:none; border-radius:6px; background:#667eea; color:#fff; cursor:pointer;">Start Test</button>
+    </div>
+    <div id="timer" style="display:none; font-weight:600; font-size:1.2em; margin-top:20px;"></div>
+  `;
+  document.getElementById("startTestBtn").onclick = function () {
+    let inputValue = document.getElementById("userNameInput").value.trim();
+    if (inputValue) {
+      userName = inputValue;
+      startExam();
+    } else {
+      alert("Please enter your name.");
+    }
+  };
+}
+showNameInput();
 
-// Start countdown timer
+function startExam() {
+  // Show greeting briefly
+  container.innerHTML = `
+    <h2>Hello, ${userName}! Your test will begin now.</h2>
+  `;
+  setTimeout(() => {
+    container.innerHTML = `
+      <div id="timer" style="font-weight:600; font-size:1.2em; margin-bottom:15px;"></div>
+      <div id="liveScore" style="font-weight:600; font-size:1em; margin-bottom:15px; color:#333;">
+        Right: 0 &nbsp;&nbsp; Wrong: 0
+      </div>
+      <div id="quiz"></div>
+      <div id="result" class="result" style="display:none;"></div>
+      <button id="restartBtn" style="display:none; margin-top:20px; padding:12px 25px; font-weight:600; font-size:1.1em; border:none; border-radius:8px; background:#667eea; color:#fff; cursor:pointer;">Restart</button>
+    `;
+    // Re-cache elements
+    window.quizEl = document.getElementById("quiz");
+    window.resultEl = document.getElementById("result");
+    window.restartBtn = document.getElementById("restartBtn");
+    window.timerEl = document.getElementById("timer");
+    window.liveScoreEl = document.getElementById("liveScore");
+
+    // Initialize state
+    currentSubjectIndex = 0;
+    results = [];
+    score = 0;
+    current = 0;
+    rightCount = 0;
+    wrongCount = 0;
+    remainingTime = 9000;
+
+    startTimer();
+    loadSubject(subjectOrder[currentSubjectIndex]);
+
+    restartBtn.onclick = () => location.reload();
+  }, 2000);
+}
+
+let rightCount = 0;
+let wrongCount = 0;
+
+// Timer controls
 function startTimer() {
-  clearInterval(timerInterval);
   updateTimerDisplay();
-  timerInterval = setInterval(() => {
+  timer = setInterval(() => {
     remainingTime--;
     updateTimerDisplay();
     if (remainingTime <= 0) {
-      clearInterval(timerInterval);
-      timerEl.textContent = "Time's up!";
-      endQuizDueToTimeout();
+      clearInterval(timer);
+      finishExam();
     }
   }, 1000);
 }
 
-// Update the timer display
 function updateTimerDisplay() {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
-  timerEl.textContent = `Time Remaining: ${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  timerEl.textContent = `Time left: ${minutes}m ${seconds < 10 ? "0" + seconds : seconds}s`;
 }
 
-// End the quiz due to timeout and show final result
-function endQuizDueToTimeout() {
-  quizEl.style.display = "none";
-  resultEl.style.display = "block";
-  restartBtn.style.display = "inline-block";
-
-  resultEl.className = "result needs-improvement";
-  resultEl.innerHTML = `
-    <div class="score-animation">
-      <div>Time's up!</div>
-      <div>Your quiz has finished.</div>
-      <div>Your final score is ${score} out of ${questions.length}</div>
-    </div>
-  `;
-}
-
-// Load questions of selected subject and start quiz
 function loadSubject(subject) {
   questions = subjects[subject];
-  if (!questions || questions.length === 0) {
-    quizEl.innerHTML = "<p>No questions available for this subject.</p>";
-    return;
-  }
-
-  questions = shuffleArray([...questions]);
-
   current = 0;
   score = 0;
-  resultEl.style.display = "none";
-  restartBtn.style.display = "none";
-  quizEl.style.display = "block";
+  rightCount = 0;
+  wrongCount = 0;
+  updateLiveScore();
   renderQuestion();
 }
 
-// Shuffle array function
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
+function updateLiveScore() {
+  liveScoreEl.textContent = `Right: ${rightCount}    Wrong: ${wrongCount}`;
 }
 
-// Create progress bar
-function createProgressBar() {
-  const progressContainer = document.createElement("div");
-  progressContainer.className = "progress-container";
-
-  const progressBar = document.createElement("div");
-  progressBar.className = "progress-bar";
-  progressBar.id = "progressBar";
-
-  progressContainer.appendChild(progressBar);
-  return progressContainer;
-}
-
-// Update progress bar
-function updateProgress() {
-  const progressBar = document.getElementById("progressBar");
-  if (progressBar) {
-    const percentage = (current / questions.length) * 100;
-    progressBar.style.width = percentage + "%";
-  }
-}
-
-// Render current question and options
 function renderQuestion() {
   if (current >= questions.length) {
-    showResult();
+    // Save this subject result and go next or finish
+    results.push({
+      subject: subjectOrder[currentSubjectIndex],
+      score,
+      total: questions.length,
+    });
+    currentSubjectIndex++;
+    if (currentSubjectIndex < subjectOrder.length && remainingTime > 0) {
+      loadSubject(subjectOrder[currentSubjectIndex]);
+    } else {
+      finishExam();
+    }
     return;
   }
-
   const q = questions[current];
-  if (!q) {
-    quizEl.innerHTML = "<p>Error: question data not found.</p>";
-    return;
-  }
-
-  let progressContainer = document.querySelector(".progress-container");
-  if (!progressContainer) {
-    progressContainer = createProgressBar();
-  }
-
   quizEl.innerHTML = `
-    <div class="question-counter">Question ${current + 1} of ${
-    questions.length
-  }</div>
     <div class="question">${q.question}</div>
-    <div class="options">
+    <div id="optionArea" class="options">
       ${q.options
-        .map((opt) => `<button class="option-btn">${opt}</button>`)
+        .map(
+          (opt, i) =>
+            `<button class="option-btn" data-idx="${i}">${opt}</button>`
+        )
         .join("")}
+    </div>
+    <div id="feedback" style="margin:12px 0; font-size:1.15em; font-weight:bold;"></div>
+    <div style="margin:10px 0; font-weight:bold;">
+      Subject: ${subjectOrder[currentSubjectIndex].replace("_", " ").toUpperCase()} | Q${current + 1} /
+      ${questions.length}
     </div>
   `;
 
-  const questionCounter = quizEl.querySelector(".question-counter");
-  if (questionCounter) {
-    const nextEl = questionCounter.nextElementSibling;
-    if (!nextEl || !nextEl.classList.contains("progress-container")) {
-      questionCounter.insertAdjacentElement("afterend", progressContainer);
-    }
-  }
+  const optionBtns = Array.from(document.querySelectorAll(".option-btn"));
+  const feedbackEl = document.getElementById("feedback");
+  let isAnswered = false;
 
-  updateProgress();
-
-  const optionButtons = document.querySelectorAll(".option-btn");
-  optionButtons.forEach((btn) => {
+  optionBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      optionButtons.forEach((b) => (b.disabled = true));
-      checkAnswer(btn.textContent, btn, optionButtons);
+      if (isAnswered) return;
+      isAnswered = true;
+      const correctIndex = q.options.findIndex((opt) => opt === q.answer);
+      const selectedIndex = parseInt(btn.getAttribute("data-idx"));
+
+      optionBtns.forEach((b) => (b.disabled = true));
+
+      if (selectedIndex === correctIndex) {
+        btn.style.background = "#46B546";
+        btn.style.color = "#fff";
+        feedbackEl.textContent = "Correct!";
+        feedbackEl.style.color = "#46B546";
+        score++;
+        rightCount++;
+      } else {
+        btn.style.background = "#e74c3c";
+        btn.style.color = "#fff";
+        optionBtns[correctIndex].style.background = "#46B546";
+        optionBtns[correctIndex].style.color = "#fff";
+        feedbackEl.textContent = "Wrong!";
+        feedbackEl.style.color = "#e74c3c";
+        wrongCount++;
+      }
+
+      updateLiveScore();
+
+      setTimeout(() => {
+        current++;
+        renderQuestion();
+      }, 1200);
     });
   });
 }
 
-// Compare selected answer and move forward with visual feedback
-function checkAnswer(selected, clickedBtn, allButtons) {
-  const correctAnswer = questions[current].answer;
-  const isCorrect = selected === correctAnswer;
-
-  if (isCorrect) {
-    score++;
-    clickedBtn.classList.add("correct");
-    showFeedback("Correct! 🎉", "success");
-  } else {
-    clickedBtn.classList.add("incorrect");
-    allButtons.forEach((btn) => {
-      if (btn.textContent === correctAnswer) {
-        btn.classList.add("correct");
-      }
-    });
-    showFeedback("Incorrect! 😔", "error");
-  }
-
-  setTimeout(() => {
-    current++;
-    renderQuestion();
-  }, 1500);
-}
-
-// Show feedback message
-function showFeedback(message, type) {
-  const feedback = document.createElement("div");
-  feedback.className = `feedback ${type}`;
-  feedback.textContent = message;
-  feedback.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-weight: 600;
-    z-index: 1000;
-    animation: feedbackSlide 0.5s ease-out;
-    ${
-      type === "success"
-        ? "background: linear-gradient(145deg, #28a745, #20c997); color: white;"
-        : "background: linear-gradient(145deg, #dc3545, #fd7e14); color: white;"
-    }
-  `;
-
-  document.body.appendChild(feedback);
-
-  setTimeout(() => {
-    feedback.remove();
-  }, 1500);
-}
-
-// Show final score and restart button with enhanced styling
-function showResult() {
-  clearInterval(timerInterval);
+function finishExam() {
+  clearInterval(timer);
   quizEl.style.display = "none";
+  timerEl.style.display = "none";
+  liveScoreEl.style.display = "none";
 
-  const percentage = Math.round((score / questions.length) * 100);
+  let totalScore = results.reduce((sum, r) => sum + r.score, 0);
+  let totalQuestions = results.reduce((sum, r) => sum + r.total, 0);
+  const percentage = Math.round((totalScore / totalQuestions) * 100);
+
   let resultClass = "needs-improvement";
   let resultMessage = "Keep practicing! 📚";
 
@@ -246,126 +212,37 @@ function showResult() {
   }
 
   resultEl.className = `result ${resultClass}`;
+  resultEl.style.display = "block";
   resultEl.innerHTML = `
-    <div class="score-animation">
-      <div>Final Score: ${score} / ${questions.length}</div>
-      <div>Percentage: ${percentage}%</div>
-      <div class="result-message">${resultMessage}</div>
+    <h2>Exam Complete!</h2>
+    <div><strong>Name:</strong> ${userName}</div>
+    <div style="margin: 12px 0; font-size:1.2em;">
+      <strong>Total Score:</strong> ${totalScore} / ${totalQuestions} (${percentage}%)
+    </div>
+    <div style="text-align:left; margin-top:15px;">
+      ${results
+        .map(
+          (r) =>
+            `<div style="margin-bottom: 8px;">
+              <strong>${r.subject.replace("_", " ").toUpperCase()}</strong>: ${r.score} / ${r.total}
+            </div>`
+        )
+        .join("")}
+    </div>
+    <div style="margin-top:20px; color:#2e7d32; font-weight:600;">
+      Results saved in your browser.
     </div>
   `;
-
-  resultEl.style.display = "block";
+  saveResults();
   restartBtn.style.display = "inline-block";
-
-  if (percentage >= 80) {
-    createConfetti();
-  }
+  restartBtn.onclick = () => location.reload();
 }
 
-// Create confetti effect
-function createConfetti() {
-  const colors = [
-    "#667eea",
-    "#764ba2",
-    "#f093fb",
-    "#f5576c",
-    "#28a745",
-    "#ffc107",
-  ];
-
-  for (let i = 0; i < 50; i++) {
-    setTimeout(() => {
-      const confetti = document.createElement("div");
-      confetti.style.cssText = `
-        position: fixed;
-        width: 10px;
-        height: 10px;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
-        left: ${Math.random() * 100}vw;
-        top: -10px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 1000;
-        animation: confettiFall 3s linear forwards;
-      `;
-
-      document.body.appendChild(confetti);
-
-      setTimeout(() => confetti.remove(), 3000);
-    }, i * 50);
-  }
+function saveResults() {
+  const examResult = {
+    user: userName,
+    date: new Date().toLocaleString(),
+    scores: results,
+  };
+  localStorage.setItem("wbTetExamResult_" + userName, JSON.stringify(examResult));
 }
-
-// Restart quiz for current subject
-restartBtn.addEventListener("click", () => {
-  if (selectedSubject) {
-    remainingTime = 30 * 60;
-    startTimer();
-    loadSubject(selectedSubject);
-  }
-});
-
-// Reset display when no subject selected
-function resetQuizDisplay() {
-  quizEl.innerHTML =
-    '<p style="color: #666; font-size: 1.1em;">Please select a subject to start the quiz</p>';
-  resultEl.style.display = "none";
-  restartBtn.style.display = "none";
-  clearInterval(timerInterval);
-  timerEl.textContent = "Time Remaining: 30:00";
-}
-
-// Add CSS animations dynamically
-const style = document.createElement("style");
-style.textContent = `
-  .question-counter {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 10px;
-    font-weight: 500;
-  }
-  
-  @keyframes feedbackSlide {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes confettiFall {
-    to {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-  
-  .result-message {
-    margin-top: 15px;
-    font-size: 0.8em;
-    opacity: 0.9;
-  }
-  
-  .progress-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    height: 10px;
-    overflow: hidden;
-  }
-  
-  .progress-bar {
-    height: 10px;
-    background-color: #28a745;
-    width: 0%;
-    transition: width 0.3s ease;
-  }
-`;
-document.head.appendChild(style);
-
-// Initialize with welcome message
-resetQuizDisplay();
