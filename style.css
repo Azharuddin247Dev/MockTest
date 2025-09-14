@@ -76,10 +76,10 @@ h1 {
   animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes titleGlow {
+/*@keyframes titleGlow {
   from { text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
   to { text-shadow: 2px 2px 20px rgba(102, 126, 234, 0.3); }
-}
+}*/
 
 #subjectSelector {
   width: 100%;
