@@ -144,6 +144,12 @@ function renderQuestion() {
   }
 
   const q = questions[current];
+  if (!q || !q.question || !q.options || !q.answer) {
+    console.error('Invalid question data at index:', current);
+    current++;
+    renderQuestion();
+    return;
+  }
   quizEl.innerHTML = `
     <div class="question">${q.question}</div>
     <div id="optionArea" class="options">
@@ -170,34 +176,43 @@ function renderQuestion() {
     btn.addEventListener("click", () => {
       if (isAnswered) return;
       isAnswered = true;
-      const correctIndex = q.options.findIndex((opt) => opt === q.answer);
-      const selectedIndex = parseInt(btn.getAttribute("data-idx"));
+      
+      try {
+        const correctIndex = q.options.findIndex((opt) => opt === q.answer);
+        const selectedIndex = parseInt(btn.getAttribute("data-idx"));
 
-      optionBtns.forEach((b) => (b.disabled = true));
+        optionBtns.forEach((b) => (b.disabled = true));
 
-      if (selectedIndex === correctIndex) {
-        btn.style.background = "#46B546";
-        btn.style.color = "#fff";
-        feedbackEl.textContent = "Correct!";
-        feedbackEl.style.color = "#46B546";
-        score++;
-        rightCount++;
-      } else {
-        btn.style.background = "#e74c3c";
-        btn.style.color = "#fff";
-        optionBtns[correctIndex].style.background = "#46B546";
-        optionBtns[correctIndex].style.color = "#fff";
-        feedbackEl.textContent = "Wrong!";
-        feedbackEl.style.color = "#e74c3c";
-        wrongCount++;
-      }
+        if (selectedIndex === correctIndex) {
+          btn.style.background = "#46B546";
+          btn.style.color = "#fff";
+          feedbackEl.textContent = "Correct!";
+          feedbackEl.style.color = "#46B546";
+          score++;
+          rightCount++;
+        } else {
+          btn.style.background = "#e74c3c";
+          btn.style.color = "#fff";
+          if (optionBtns[correctIndex]) {
+            optionBtns[correctIndex].style.background = "#46B546";
+            optionBtns[correctIndex].style.color = "#fff";
+          }
+          feedbackEl.textContent = "Wrong!";
+          feedbackEl.style.color = "#e74c3c";
+          wrongCount++;
+        }
 
-      updateLiveScore();
+        updateLiveScore();
 
-      setTimeout(() => {
+        setTimeout(() => {
+          current++;
+          renderQuestion();
+        }, 1200);
+      } catch (error) {
+        console.error('Error in answer processing:', error);
         current++;
         renderQuestion();
-      }, 1200);
+      }
     });
   });
 }
