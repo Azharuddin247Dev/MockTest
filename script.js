@@ -10,7 +10,6 @@ let remainingTime = 9000; // 150 minutes in seconds
 
 const container = document.querySelector(".quiz-container");
 
-// Prepare subject data mapping (subject files must define these vars)
 const subjects = {
   math: window.mathQuestions || [],
   science: window.scienceQuestions || [],
@@ -19,10 +18,9 @@ const subjects = {
   english: window.englishQuestions || [],
 };
 
-// Initialize app by asking user name
 function showNameInput() {
   container.innerHTML = `
-    <h1>Mock Test</h1>
+    <h1>WB TET 2025 Mock Test</h1>
     <div id="nameBox">
       <label for="userNameInput">Enter your name:</label><br/>
       <input id="userNameInput" type="text" required autofocus style="padding:8px 12px; font-size:1.1em; border-radius:6px; border:1px solid #ccc;" />
@@ -43,7 +41,6 @@ function showNameInput() {
 showNameInput();
 
 function startExam() {
-  // Show greeting briefly
   container.innerHTML = `
     <h2>Hello, ${userName}! Your test will begin now.</h2>
   `;
@@ -57,14 +54,13 @@ function startExam() {
       <div id="result" class="result" style="display:none;"></div>
       <button id="restartBtn" style="display:none; margin-top:20px; padding:12px 25px; font-weight:600; font-size:1.1em; border:none; border-radius:8px; background:#667eea; color:#fff; cursor:pointer;">Restart</button>
     `;
-    // Re-cache elements
+
     window.quizEl = document.getElementById("quiz");
     window.resultEl = document.getElementById("result");
     window.restartBtn = document.getElementById("restartBtn");
     window.timerEl = document.getElementById("timer");
     window.liveScoreEl = document.getElementById("liveScore");
 
-    // Initialize state
     currentSubjectIndex = 0;
     results = [];
     score = 0;
@@ -83,7 +79,6 @@ function startExam() {
 let rightCount = 0;
 let wrongCount = 0;
 
-// Timer controls
 function startTimer() {
   updateTimerDisplay();
   timer = setInterval(() => {
@@ -99,11 +94,25 @@ function startTimer() {
 function updateTimerDisplay() {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
-  timerEl.textContent = `Time left: ${minutes}m ${seconds < 10 ? "0" + seconds : seconds}s`;
+  timerEl.textContent = `Time left: ${minutes}m ${
+    seconds < 10 ? "0" + seconds : seconds
+  }s`;
 }
 
 function loadSubject(subject) {
   questions = subjects[subject];
+  // Handle if questions is undefined or empty gracefully
+  if (!questions || questions.length === 0) {
+    quizEl.innerHTML = `<p>No questions available for ${subject.toUpperCase()}</p>`;
+    // Move to next subject or finish if none left
+    currentSubjectIndex++;
+    if (currentSubjectIndex < subjectOrder.length) {
+      loadSubject(subjectOrder[currentSubjectIndex]);
+    } else {
+      finishExam();
+    }
+    return;
+  }
   current = 0;
   score = 0;
   rightCount = 0;
@@ -118,12 +127,13 @@ function updateLiveScore() {
 
 function renderQuestion() {
   if (current >= questions.length) {
-    // Save this subject result and go next or finish
+    // Save results for this subject
     results.push({
       subject: subjectOrder[currentSubjectIndex],
       score,
       total: questions.length,
     });
+    // Move to next subject
     currentSubjectIndex++;
     if (currentSubjectIndex < subjectOrder.length && remainingTime > 0) {
       loadSubject(subjectOrder[currentSubjectIndex]);
@@ -132,6 +142,7 @@ function renderQuestion() {
     }
     return;
   }
+
   const q = questions[current];
   quizEl.innerHTML = `
     <div class="question">${q.question}</div>
@@ -144,9 +155,10 @@ function renderQuestion() {
         .join("")}
     </div>
     <div id="feedback" style="margin:12px 0; font-size:1.15em; font-weight:bold;"></div>
-    <div style="margin:10px 0; font-weight:bold;">
-      Subject: ${subjectOrder[currentSubjectIndex].replace("_", " ").toUpperCase()} | Q${current + 1} /
-      ${questions.length}
+    <div style="margin:10px 0;font-weight:bold;">
+      Subject: ${subjectOrder[currentSubjectIndex]
+        .replace("_", " ")
+        .toUpperCase()} | Q${current + 1} / ${questions.length}
     </div>
   `;
 
@@ -222,10 +234,13 @@ function finishExam() {
     <div style="text-align:left; margin-top:15px;">
       ${results
         .map(
-          (r) =>
-            `<div style="margin-bottom: 8px;">
-              <strong>${r.subject.replace("_", " ").toUpperCase()}</strong>: ${r.score} / ${r.total}
-            </div>`
+          (r) => `
+        <div style="margin-bottom: 8px;">
+          <strong>${r.subject.replace("_", " ").toUpperCase()}</strong>: ${
+            r.score
+          } / ${r.total}
+        </div>
+      `
         )
         .join("")}
     </div>
@@ -244,5 +259,8 @@ function saveResults() {
     date: new Date().toLocaleString(),
     scores: results,
   };
-  localStorage.setItem("wbTetExamResult_" + userName, JSON.stringify(examResult));
+  localStorage.setItem(
+    `wbTetExamResult_${userName}`,
+    JSON.stringify(examResult)
+  );
 }
