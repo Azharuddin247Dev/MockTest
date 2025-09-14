@@ -5,13 +5,6 @@ let score = 0;
 let subjectOrder = ["math", "science", "social_science", "bengali", "english"];
 let currentSubjectIndex = 0;
 let results = [];
-let userName = "";
-let questions = [];
-let current = 0;
-let score = 0;
-let subjectOrder = ["math", "science", "social_science", "bengali", "english"];
-let currentSubjectIndex = 0;
-let results = [];
 let timer; // interval
 let remainingTime = 9000; // 150 minutes in seconds
 
@@ -33,7 +26,6 @@ function showNameInput() {
       <input id="userNameInput" type="text" required autofocus style="padding:8px 12px; font-size:1.1em; border-radius:6px; border:1px solid #ccc;" />
       <button id="startTestBtn" style="margin-left:8px; padding:8px 16px; font-size:1.1em; border:none; border-radius:6px; background:#667eea; color:#fff; cursor:pointer;">Start Test</button>
     </div>
-    <button id="leaderboardBtn" style="margin-top:15px; padding:8px 16px; font-size:1em; border:none; border-radius:6px; background:#28a745; color:#fff; cursor:pointer;">View Leaderboard</button>
     <div id="timer" style="display:none; font-weight:600; font-size:1.2em; margin-top:20px;"></div>
   `;
   document.getElementById("startTestBtn").onclick = function () {
@@ -45,7 +37,6 @@ function showNameInput() {
       alert("Please enter your name.");
     }
   };
-  document.getElementById("leaderboardBtn").onclick = showLeaderboard;
 }
 showNameInput();
 
@@ -291,77 +282,16 @@ function finishExam() {
   saveResults();
   restartBtn.style.display = "inline-block";
   restartBtn.onclick = () => location.reload();
-  
-  // Add leaderboard button
-  const leaderboardBtn = document.createElement('button');
-  leaderboardBtn.textContent = 'View Leaderboard';
-  leaderboardBtn.style.cssText = 'margin-left: 10px; padding: 12px 25px; font-weight: 600; font-size: 1.1em; border: none; border-radius: 8px; background: #28a745; color: #fff; cursor: pointer;';
-  leaderboardBtn.onclick = showLeaderboard;
-  restartBtn.parentNode.insertBefore(leaderboardBtn, restartBtn.nextSibling);
 }
 
 function saveResults() {
-  const totalScore = results.reduce((sum, r) => sum + r.score, 0);
-  const totalQuestions = results.reduce((sum, r) => sum + r.total, 0);
-  const percentage = Math.round((totalScore / totalQuestions) * 100);
-  
   const examResult = {
     user: userName,
     date: new Date().toLocaleString(),
     scores: results,
-    totalScore,
-    totalQuestions,
-    percentage
   };
-  
-  // Save individual result
-  localStorage.setItem(`wbTetExamResult_${userName}`, JSON.stringify(examResult));
-  
-  // Update leaderboard
-  updateLeaderboard(examResult);
-}
-
-function updateLeaderboard(newResult) {
-  let leaderboard = JSON.parse(localStorage.getItem('wbTetLeaderboard') || '[]');
-  
-  // Remove previous entry for same user
-  leaderboard = leaderboard.filter(entry => entry.user !== newResult.user);
-  
-  // Add new result
-  leaderboard.push(newResult);
-  
-  // Sort by percentage (descending)
-  leaderboard.sort((a, b) => b.percentage - a.percentage);
-  
-  // Keep top 10
-  leaderboard = leaderboard.slice(0, 10);
-  
-  localStorage.setItem('wbTetLeaderboard', JSON.stringify(leaderboard));
-}
-
-function showLeaderboard() {
-  const leaderboard = JSON.parse(localStorage.getItem('wbTetLeaderboard') || '[]');
-  
-  container.innerHTML = `
-    <h1>🏆 Leaderboard</h1>
-    <div style="text-align: left; max-width: 500px; margin: 0 auto;">
-      ${leaderboard.length === 0 ? 
-        '<p style="text-align: center; color: #666;">No results yet. Be the first to take the test!</p>' :
-        leaderboard.map((entry, index) => `
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; margin: 8px 0; background: ${index < 3 ? '#f8f9fa' : '#fff'}; border: 1px solid #ddd; border-radius: 8px; ${index === 0 ? 'border-color: #ffd700; background: linear-gradient(145deg, #fff9c4, #ffeaa7);' : index === 1 ? 'border-color: #c0c0c0; background: linear-gradient(145deg, #f8f9fa, #e9ecef);' : index === 2 ? 'border-color: #cd7f32; background: linear-gradient(145deg, #fdf2e9, #f4e2d7);' : ''}">
-            <div>
-              <span style="font-weight: bold; margin-right: 8px;">${index + 1}.</span>
-              <span style="font-weight: 600;">${entry.user}</span>
-              <div style="font-size: 0.85em; color: #666; margin-top: 2px;">${entry.date}</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-weight: bold; color: #333;">${entry.percentage}%</div>
-              <div style="font-size: 0.85em; color: #666;">${entry.totalScore}/${entry.totalQuestions}</div>
-            </div>
-          </div>
-        `).join('')
-      }
-    </div>
-    <button onclick="showNameInput()" style="margin-top: 20px; padding: 10px 20px; font-size: 1em; border: none; border-radius: 6px; background: #667eea; color: #fff; cursor: pointer;">Back to Test</button>
-  `;
+  localStorage.setItem(
+    `wbTetExamResult_${userName}`,
+    JSON.stringify(examResult)
+  );
 }
