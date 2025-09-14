@@ -7,6 +7,7 @@ let currentSubjectIndex = 0;
 let results = [];
 let timer; // interval
 let remainingTime = 9000; // 150 minutes in seconds
+let isPaused = false;
 
 const container = document.querySelector(".quiz-container");
 
@@ -52,12 +53,14 @@ function startExam() {
       </div>
       <div id="quiz"></div>
       <div id="result" class="result" style="display:none;"></div>
+      <button id="pauseResumeBtn" style="padding:10px 20px; font-size:1.1em; margin-top:10px;">Pause</button>
       <button id="restartBtn" style="display:none; margin-top:20px; padding:12px 25px; font-weight:600; font-size:1.1em; border:none; border-radius:8px; background:#667eea; color:#fff; cursor:pointer;">Restart</button>
     `;
 
     window.quizEl = document.getElementById("quiz");
     window.resultEl = document.getElementById("result");
     window.restartBtn = document.getElementById("restartBtn");
+    window.pauseResumeBtn = document.getElementById("pauseResumeBtn");
     window.timerEl = document.getElementById("timer");
     window.liveScoreEl = document.getElementById("liveScore");
 
@@ -68,10 +71,12 @@ function startExam() {
     rightCount = 0;
     wrongCount = 0;
     remainingTime = 9000;
+    isPaused = false;
 
     startTimer();
     loadSubject(subjectOrder[currentSubjectIndex]);
 
+    pauseResumeBtn.onclick = togglePauseResume;
     restartBtn.onclick = () => location.reload();
   }, 2000);
 }
@@ -82,11 +87,13 @@ let wrongCount = 0;
 function startTimer() {
   updateTimerDisplay();
   timer = setInterval(() => {
-    remainingTime--;
-    updateTimerDisplay();
-    if (remainingTime <= 0) {
-      clearInterval(timer);
-      finishExam();
+    if (!isPaused) {
+      remainingTime--;
+      updateTimerDisplay();
+      if (remainingTime <= 0) {
+        clearInterval(timer);
+        finishExam();
+      }
     }
   }, 1000);
 }
@@ -94,17 +101,18 @@ function startTimer() {
 function updateTimerDisplay() {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
-  timerEl.textContent = `Time left: ${minutes}m ${
-    seconds < 10 ? "0" + seconds : seconds
-  }s`;
+  timerEl.textContent = `Time left: ${minutes}m ${seconds < 10 ? "0" + seconds : seconds}s`;
+}
+
+function togglePauseResume() {
+  isPaused = !isPaused;
+  pauseResumeBtn.textContent = isPaused ? "Resume" : "Pause";
 }
 
 function loadSubject(subject) {
   questions = subjects[subject];
-  // Handle if questions is undefined or empty gracefully
   if (!questions || questions.length === 0) {
     quizEl.innerHTML = `<p>No questions available for ${subject.toUpperCase()}</p>`;
-    // Move to next subject or finish if none left
     currentSubjectIndex++;
     if (currentSubjectIndex < subjectOrder.length) {
       loadSubject(subjectOrder[currentSubjectIndex]);
@@ -127,13 +135,11 @@ function updateLiveScore() {
 
 function renderQuestion() {
   if (current >= questions.length) {
-    // Save results for this subject
     results.push({
       subject: subjectOrder[currentSubjectIndex],
       score,
       total: questions.length,
     });
-    // Move to next subject
     currentSubjectIndex++;
     if (currentSubjectIndex < subjectOrder.length && remainingTime > 0) {
       setTimeout(() => loadSubject(subjectOrder[currentSubjectIndex]), 100);
@@ -145,32 +151,23 @@ function renderQuestion() {
 
   const q = questions[current];
   if (!q || !q.question || !q.options || !q.answer) {
-    console.error('Invalid question data at index:', current);
+    console.error("Invalid question data at index:", current);
     current++;
     setTimeout(() => renderQuestion(), 50);
     return;
   }
-  
-  // Clear previous content first
-  quizEl.innerHTML = '';
-  
-  // Add content with small delay for mobile rendering
+
+  quizEl.innerHTML = "";
+
   setTimeout(() => {
     quizEl.innerHTML = `
       <div class="question">${q.question}</div>
       <div id="optionArea" class="options">
-        ${q.options
-          .map(
-            (opt, i) =>
-              `<button class="option-btn" style="touch-action: manipulation;">${opt}</button>`
-          )
-          .join("")}
+        ${q.options.map((opt) => `<button class="option-btn">${opt}</button>`).join("")}
       </div>
       <div id="feedback" style="margin:12px 0; font-size:1.15em; font-weight:bold;"></div>
       <div style="margin:10px 0;font-weight:bold;">
-        Subject: ${subjectOrder[currentSubjectIndex]
-          .replace("_", " ")
-          .toUpperCase()} | Q${current + 1} / ${questions.length}
+        Subject: ${subjectOrder[currentSubjectIndex].replace("_", " ").toUpperCase()} | Q${current + 1} / ${questions.length}
       </div>
     `;
 
@@ -178,58 +175,54 @@ function renderQuestion() {
     const feedbackEl = document.getElementById("feedback");
     let isAnswered = false;
 
-  optionBtns.forEach((btn, index) => {
-    const handleAnswer = () => {
-      if (isAnswered) return;
-      isAnswered = true;
-      
-      try {
-        const correctIndex = q.options.findIndex((opt) => opt === q.answer);
-        const selectedIndex = index;
+    optionBtns.forEach((btn, index) => {
+      const handleAnswer = () => {
+        if (isAnswered || isPaused) return;
+        isAnswered = true;
 
-        optionBtns.forEach((b) => {
-          b.disabled = true;
-          b.style.pointerEvents = 'none';
-        });
+        try {
+          const correctIndex = q.options.findIndex((opt) => opt === q.answer);
+          const selectedIndex = index;
 
-        if (selectedIndex === correctIndex) {
-          btn.style.background = "#46B546";
-          btn.style.color = "#fff";
-          feedbackEl.textContent = "Correct!";
-          feedbackEl.style.color = "#46B546";
-          score++;
-          rightCount++;
-        } else {
-          btn.style.background = "#e74c3c";
-          btn.style.color = "#fff";
-          if (optionBtns[correctIndex]) {
-            optionBtns[correctIndex].style.background = "#46B546";
-            optionBtns[correctIndex].style.color = "#fff";
+          optionBtns.forEach((b) => {
+            b.disabled = true;
+            b.style.pointerEvents = "none";
+          });
+
+          if (selectedIndex === correctIndex) {
+            btn.style.background = "#46B546";
+            btn.style.color = "#fff";
+            feedbackEl.textContent = "Correct!";
+            feedbackEl.style.color = "#46B546";
+            score++;
+            rightCount++;
+          } else {
+            btn.style.background = "#e74c3c";
+            btn.style.color = "#fff";
+            if (optionBtns[correctIndex]) {
+              optionBtns[correctIndex].style.background = "#46B546";
+              optionBtns[correctIndex].style.color = "#fff";
+            }
+            feedbackEl.textContent = "Wrong!";
+            feedbackEl.style.color = "#e74c3c";
+            wrongCount++;
           }
-          feedbackEl.textContent = "Wrong!";
-          feedbackEl.style.color = "#e74c3c";
-          wrongCount++;
-        }
 
-        updateLiveScore();
+          updateLiveScore();
 
-        setTimeout(() => {
+          setTimeout(() => {
+            current++;
+            renderQuestion();
+          }, 800);
+        } catch (error) {
+          console.error("Error in answer processing:", error);
           current++;
           renderQuestion();
-        }, 800);
-      } catch (error) {
-        console.error('Error in answer processing:', error);
-        current++;
-        renderQuestion();
-      }
-    };
-    
-    btn.addEventListener("click", handleAnswer);
-    btn.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      handleAnswer();
+        }
+      };
+
+      btn.addEventListener("click", handleAnswer);
     });
-  });
   }, 50);
 }
 
@@ -238,6 +231,7 @@ function finishExam() {
   quizEl.style.display = "none";
   timerEl.style.display = "none";
   liveScoreEl.style.display = "none";
+  pauseResumeBtn.style.display = "none";
 
   let totalScore = results.reduce((sum, r) => sum + r.score, 0);
   let totalQuestions = results.reduce((sum, r) => sum + r.total, 0);
@@ -263,20 +257,13 @@ function finishExam() {
       <strong>Total Score:</strong> ${totalScore} / ${totalQuestions} (${percentage}%)
     </div>
     <div style="text-align:left; margin-top:15px;">
-      ${results
-        .map(
-          (r) => `
+      ${results.map(r => `
         <div style="margin-bottom: 8px;">
-          <strong>${r.subject.replace("_", " ").toUpperCase()}</strong>: ${
-            r.score
-          } / ${r.total}
-        </div>
-      `
-        )
-        .join("")}
+          <strong>${r.subject.replace("_", " ").toUpperCase()}</strong>: ${r.score} / ${r.total}
+        </div>`).join("")}
     </div>
     <div style="margin-top:20px; color:#2e7d32; font-weight:600;">
-      Results saved in your browser.
+      ${resultMessage}
     </div>
   `;
   saveResults();
@@ -290,8 +277,5 @@ function saveResults() {
     date: new Date().toLocaleString(),
     scores: results,
   };
-  localStorage.setItem(
-    `wbTetExamResult_${userName}`,
-    JSON.stringify(examResult)
-  );
+  localStorage.setItem(`wbTetExamResult_${userName}`, JSON.stringify(examResult));
 }
