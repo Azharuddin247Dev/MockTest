@@ -377,3 +377,25 @@ h1 {
     font-size: 1em;
   }
 }
+#pauseResumeBtn {
+  background: linear-gradient(145deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  margin-top: 10px;
+}
+
+#pauseResumeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+#pauseResumeBtn:active {
+  transform: translateY(0);
+}
