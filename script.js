@@ -21,7 +21,7 @@ const subjects = {
 
 function showNameInput() {
   container.innerHTML = `
-    <h1>WB TET 2025 Mock Test</h1>
+    <h1> Mock Test</h1>
     <div id="nameBox">
       <label for="userNameInput">Enter your name:</label><br/>
       <input id="userNameInput" type="text" required autofocus style="padding:8px 12px; font-size:1.1em; border-radius:6px; border:1px solid #ccc;" />
