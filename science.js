@@ -1,154 +1,158 @@
 window.scienceQuestions = [
   {
-    question: "Which of the following is a non-renewable resource?",
-    options: ["Water", "Wind", "Coal", "Sunlight"],
-    answer: "Coal"
+    question: "Which gas is used by plants during photosynthesis?",
+    options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+    answer: "Carbon dioxide",
   },
   {
-    question: "What is the chemical symbol for water?",
-    options: ["H2O", "O2", "CO2", "NaCl"],
-    answer: "H2O"
+    question: "The hardest natural substance on Earth is—",
+    options: ["Iron", "Diamond", "Gold", "Quartz"],
+    answer: "Diamond",
   },
   {
-    question: "Process of converting water vapour into water is called—",
-    options: ["Evaporation", "Condensation", "Sublimation", "Melting"],
-    answer: "Condensation"
+    question: "Which part of the human body regulates temperature?",
+    options: ["Lungs", "Skin", "Heart", "Brain"],
+    answer: "Skin",
   },
   {
-    question: "Which part of plant conducts photosynthesis?",
-    options: ["Root", "Stem", "Leaf", "Flower"],
-    answer: "Leaf"
+    question: "Who is known as the father of modern physics?",
+    options: ["Galileo", "Newton", "Einstein", "Faraday"],
+    answer: "Einstein",
   },
   {
-    question: "Who discovered gravity?",
-    options: ["Newton", "Einstein", "Galileo", "Curie"],
-    answer: "Newton"
+    question: "Which vitamin is mainly found in citrus fruits?",
+    options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+    answer: "Vitamin C",
   },
   {
-    question: "Blood in human body is mainly composed of—",
-    options: ["RBC", "Plasma", "Platelets", "Hormones"],
-    answer: "Plasma"
+    question: "Earth completes one rotation on its axis in—",
+    options: ["12 hours", "24 hours", "7 days", "365 days"],
+    answer: "24 hours",
   },
   {
-    question: "Which organ purifies blood in the human body?",
-    options: ["Liver", "Heart", "Lungs", "Kidney"],
-    answer: "Kidney"
+    question: "The device used to measure air pressure is—",
+    options: ["Barometer", "Thermometer", "Hygrometer", "Altimeter"],
+    answer: "Barometer",
   },
   {
-    question: "Animals that eat both plants and animals are called—",
-    options: ["Omnivores", "Carnivores", "Herbivores", "Detritivores"],
-    answer: "Omnivores"
+    question: "Chlorophyll gives leaves their green color and helps in—",
+    options: ["Digestion", "Respiration", "Photosynthesis", "Transpiration"],
+    answer: "Photosynthesis",
   },
   {
-    question: "Milk turns sour due to the presence of—",
-    options: ["Lactic acid", "Acetic acid", "Sulphuric acid", "Tartaric acid"],
-    answer: "Lactic acid"
+    question: "Which gas do humans exhale during respiration?",
+    options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Helium"],
+    answer: "Carbon dioxide",
   },
   {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Jupiter", "Venus", "Mars", "Mercury"],
-    answer: "Mars"
+    question: "Which is the largest organ in the human body?",
+    options: ["Heart", "Liver", "Skin", "Brain"],
+    answer: "Skin",
   },
   {
-    question: "What is the SI unit of force?",
-    options: ["Newton", "Joule", "Watt", "Pascal"],
-    answer: "Newton"
+    question: "Which metal is liquid at room temperature?",
+    options: ["Iron", "Mercury", "Copper", "Silver"],
+    answer: "Mercury",
   },
   {
-    question: "Boiling point of water (at sea level) is—",
-    options: ["100°C", "80°C", "120°C", "90°C"],
-    answer: "100°C"
+    question: "The process of loss of water from leaves is called—",
+    options: ["Photosynthesis", "Respiration", "Condensation", "Transpiration"],
+    answer: "Transpiration",
   },
   {
-    question: "Which is the innermost layer of the Earth?",
+    question: "Which acid is present in lemon?",
+    options: ["Lactic acid", "Citric acid", "Sulphuric acid", "Acetic acid"],
+    answer: "Citric acid",
+  },
+  {
+    question: "The energy possessed by a moving body is called—",
+    options: [
+      "Kinetic energy",
+      "Potential energy",
+      "Thermal energy",
+      "Light energy",
+    ],
+    answer: "Kinetic energy",
+  },
+  {
+    question: "Which blood group is called the universal donor?",
+    options: ["A", "B", "O", "AB"],
+    answer: "O",
+  },
+  {
+    question: "The electric cell was invented by—",
+    options: ["Newton", "Volta", "Edison", "Tesla"],
+    answer: "Volta",
+  },
+  {
+    question: "Which part of the plant takes in water from the soil?",
+    options: ["Stem", "Root", "Leaf", "Flower"],
+    answer: "Root",
+  },
+  {
+    question: "What is the normal human body temperature?",
+    options: ["36.5°C", "37°C", "39°C", "40°C"],
+    answer: "37°C",
+  },
+  {
+    question: "The planet closest to the Sun is—",
+    options: ["Venus", "Mercury", "Earth", "Mars"],
+    answer: "Mercury",
+  },
+  {
+    question: "Which scientist proposed the theory of evolution?",
+    options: ["Newton", "Darwin", "Einstein", "Pasteur"],
+    answer: "Darwin",
+  },
+  {
+    question: "Sound cannot travel in—",
+    options: ["Water", "Air", "Vacuum", "Solid"],
+    answer: "Vacuum",
+  },
+  {
+    question: "Which gas is known as laughing gas?",
+    options: ["Nitrogen", "Nitrous oxide", "Oxygen", "Carbon monoxide"],
+    answer: "Nitrous oxide",
+  },
+  {
+    question: "Which device is used to measure earthquakes?",
+    options: ["Telescope", "Seismograph", "Barometer", "Thermometer"],
+    answer: "Seismograph",
+  },
+  {
+    question: "The study of stars and planets is called—",
+    options: ["Geology", "Botany", "Zoology", "Astronomy"],
+    answer: "Astronomy",
+  },
+  {
+    question: "Which blood cells help in clotting?",
+    options: ["RBC", "Plasma", "Platelets", "WBC"],
+    answer: "Platelets",
+  },
+  {
+    question:
+      "The process of separating salt from seawater by evaporation is called—",
+    options: ["Distillation", "Sedimentation", "Crystallization", "Filtration"],
+    answer: "Crystallization",
+  },
+  {
+    question: "Which instrument measures humidity in the air?",
+    options: ["Hygrometer", "Thermometer", "Anemometer", "Barometer"],
+    answer: "Hygrometer",
+  },
+  {
+    question: "The deepest part of the Earth is called—",
     options: ["Crust", "Mantle", "Core", "Lithosphere"],
-    answer: "Core"
+    answer: "Core",
   },
   {
-    question: "Respiration in humans takes place in—",
-    options: ["Kidney", "Heart", "Lungs", "Brain"],
-    answer: "Lungs"
+    question: "The energy from the Sun is in the form of—",
+    options: ["Heat and light", "Wind", "Electricity", "Sound"],
+    answer: "Heat and light",
   },
   {
-    question: "The Sun is a—",
-    options: ["Planet", "Star", "Satellite", "Comet"],
-    answer: "Star"
+    question: "The planet with rings around it is—",
+    options: ["Earth", "Mars", "Saturn", "Jupiter"],
+    answer: "Saturn",
   },
-  {
-    question: "Photosynthesis needs—",
-    options: ["Sunlight", "Moonlight", "Starch", "Protein"],
-    answer: "Sunlight"
-  },
-  {
-    question: "Unit of electric current?",
-    options: ["Ampere", "Volt", "Ohm", "Watt"],
-    answer: "Ampere"
-  },
-  {
-    question: "The boiling point of water is higher at—",
-    options: ["Sea level", "Mountaintop", "Desert", "Below sea level"],
-    answer: "Below sea level"
-  },
-  {
-    question: "Which gas in air is essential for respiration?",
-    options: ["Nitrogen", "Oxygen", "Carbon dioxide", "Helium"],
-    answer: "Oxygen"
-  },
-  {
-    question: "What is the main source of energy for Earth?",
-    options: ["Coal", "Electricity", "Sun", "Wind"],
-    answer: "Sun"
-  },
-  {
-    question: "Who invented the electric bulb?",
-    options: ["Edison", "Newton", "Faraday", "Galileo"],
-    answer: "Edison"
-  },
-  {
-    question: "What causes tides in the oceans?",
-    options: ["Sun", "Wind", "Moon", "Rain"],
-    answer: "Moon"
-  },
-  {
-    question: "Which vitamin is synthesized by sunlight in skin?",
-    options: ["Vitamin A", "Vitamin D", "Vitamin C", "Vitamin B12"],
-    answer: "Vitamin D"
-  },
-  {
-    question: "Largest planet in the solar system?",
-    options: ["Mars", "Earth", "Saturn", "Jupiter"],
-    answer: "Jupiter"
-  },
-  {
-    question: "What is the function of white blood cells?",
-    options: ["Transport oxygen", "Clot blood", "Fight infection", "Give color"],
-    answer: "Fight infection"
-  },
-  {
-    question: "Instrument used to measure temperature?",
-    options: ["Barometer", "Anemometer", "Thermometer", "Seismograph"],
-    answer: "Thermometer"
-  },
-  {
-    question: "Which is an example of an igneous rock?",
-    options: ["Limestone", "Sandstone", "Basalt", "Slate"],
-    answer: "Basalt"
-  },
-  {
-    question: "What term describes the variety of living beings in an area?",
-    options: ["Habitat", "Biodiversity", "Community", "Ecology"],
-    answer: "Biodiversity"
-  },
-  {
-    question: "Which part of the cell controls all its activities?",
-    options: ["Cell wall", "Cytoplasm", "Nucleus", "Ribosome"],
-    answer: "Nucleus"
-  },
-  {
-    question: "Solid to gas conversion is called—",
-    options: ["Evaporation", "Sublimation", "Freezing", "Melting"],
-    answer: "Sublimation"
-  }
 ];
-
-
