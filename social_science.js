@@ -1,154 +1,197 @@
 window.socialScienceQuestions = [
   {
-    question: "‘RTE Act-2009’ guarantees quality education for all children up to what age?",
-    options: ["10", "12", "14", "16"],
-    answer: "14"
+    question: "Who is known as the Father of the Indian Constitution?",
+    options: [
+      "Mahatma Gandhi",
+      "Dr. B. R. Ambedkar",
+      "Jawaharlal Nehru",
+      "Sardar Patel",
+    ],
+    answer: "Dr. B. R. Ambedkar",
   },
   {
-    question: "Arabari in West Bengal is famous for—",
-    options: ["Wheat farming", "Tea garden", "Joint forest management", "Jute Industry"],
-    answer: "Joint forest management"
+    question: "India’s longest river is—",
+    options: ["Ganga", "Yamuna", "Brahmaputra", "Godavari"],
+    answer: "Ganga",
   },
   {
-    question: "Which season is reflected in the song 'Darun Agnibane re'?",
-    options: ["Winter", "Spring", "Summer", "Monsoon"],
-    answer: "Summer"
+    question: "The Tropic of Capricorn passes through which continent?",
+    options: ["Africa", "Asia", "Europe", "Australia"],
+    answer: "Africa",
   },
   {
-    question: "Which of the following is an igneous rock?",
-    options: ["Basalt", "Sandstone", "Limestone", "Marble"],
-    answer: "Basalt"
+    question: "Mohenjo-Daro is situated on the bank of which river?",
+    options: ["Indus", "Ganga", "Yamuna", "Narmada"],
+    answer: "Indus",
   },
   {
-    question: "Spring equinox occurs on—",
-    options: ["21st December", "21st March", "1st January", "23rd September"],
-    answer: "21st March"
+    question: "The Parliament of India consists of—",
+    options: ["Lok Sabha", "Rajya Sabha", "President", "All of these"],
+    answer: "All of these",
   },
   {
-    question: "A gorge is formed in—",
-    options: ["Lower river course", "Upper course of a river", "Plains", "Desert"],
-    answer: "Upper course of a river"
+    question: "The first woman Prime Minister of India was—",
+    options: [
+      "Sarojini Naidu",
+      "Indira Gandhi",
+      "Sonia Gandhi",
+      "Pratibha Patil",
+    ],
+    answer: "Indira Gandhi",
   },
   {
-    question: "Temperature is measured by—",
-    options: ["Anemometer", "Barometer", "Thermometer", "Seismograph"],
-    answer: "Thermometer"
+    question: "Which is the state animal of West Bengal?",
+    options: ["Leopard", "Elephant", "Fishing Cat", "Deer"],
+    answer: "Fishing Cat",
   },
   {
-    question: "India is considered a—",
-    options: ["Developed country", "Underdeveloped country", "Developing country", "None"],
-    answer: "Developing country"
+    question: "The smallest state of India by area is—",
+    options: ["Goa", "Sikkim", "Tripura", "Nagaland"],
+    answer: "Goa",
   },
   {
-    question: "Black soil is best for growing—",
-    options: ["Tea", "Cotton", "Rice", "Wheat"],
-    answer: "Cotton"
+    question: "Name the Mughal emperor who built the Red Fort in Delhi.",
+    options: ["Akbar", "Jahangir", "Shah Jahan", "Aurangzeb"],
+    answer: "Shah Jahan",
   },
   {
-    question: "Major minerals are found in the—",
-    options: ["Deccan Plateau", "Chota Nagpur Plateau", "Aravalli", "Eastern Ghats"],
-    answer: "Chota Nagpur Plateau"
+    question: "Who started the 'Bhoodan Movement' in India?",
+    options: [
+      "Mahatma Gandhi",
+      "Vinoba Bhave",
+      "Sardar Patel",
+      "Jawaharlal Nehru",
+    ],
+    answer: "Vinoba Bhave",
   },
   {
-    question: "The Great Circle is also called the—",
-    options: ["Tropic of Capricorn", "Prime Meridian", "Equator", "Longitude"],
-    answer: "Equator"
+    question: "Which Indian leader is called 'Iron Man of India'?",
+    options: [
+      "Subhas Chandra Bose",
+      "Sardar Patel",
+      "Jawaharlal Nehru",
+      "Bhagat Singh",
+    ],
+    answer: "Sardar Patel",
   },
   {
-    question: "Type of rainfall in equatorial region—",
-    options: ["Orographic", "Convectional", "Cyclonic", "Frontal"],
-    answer: "Convectional"
+    question: "What is the official language of the Indian Union?",
+    options: ["English", "Hindi", "Bengali", "Sanskrit"],
+    answer: "Hindi",
   },
   {
-    question: "The Tropic of Cancer passes through—",
-    options: ["Delhi", "Krishnanagar", "Chennai", "Kolkata"],
-    answer: "Krishnanagar"
+    question: "Where is the headquarters of the United Nations?",
+    options: ["Paris", "London", "Geneva", "New York"],
+    answer: "New York",
   },
   {
-    question: "The first humans originated from—",
-    options: ["Europe", "Asia", "America", "Africa"],
-    answer: "Africa"
+    question: "Who was the first President of India?",
+    options: [
+      "Dr. Rajendra Prasad",
+      "Dr. Radhakrishnan",
+      "C. Rajagopalachari",
+      "Jawaharlal Nehru",
+    ],
+    answer: "Dr. Rajendra Prasad",
   },
   {
-    question: "Result of the earth's revolution—",
-    options: ["Day-night", "Tides", "Seasons", "Eclipses"],
-    answer: "Seasons"
+    question: "The Partition of Bengal happened in—",
+    options: ["1900", "1905", "1911", "1920"],
+    answer: "1905",
   },
   {
-    question: "Who was the first Governor General of Independent India?",
-    options: ["Lord Mountbatten", "C. Rajagopalachari", "Jawaharlal Nehru", "Subhas Bose"],
-    answer: "Lord Mountbatten"
+    question: "Which river is called 'Sorrow of Bengal'?",
+    options: ["Ganga", "Brahmaputra", "Damodar", "Hooghly"],
+    answer: "Damodar",
   },
   {
-    question: "Minimum age for President of India?",
-    options: ["25", "30", "35", "40"],
-    answer: "35"
+    question: "The Battle of Plassey was fought in—",
+    options: ["1757", "1764", "1857", "1942"],
+    answer: "1757",
   },
   {
-    question: "India's national animal is—",
-    options: ["Elephant", "Tiger", "Lion", "Peacock"],
-    answer: "Tiger"
+    question: "Who was the founder of Arya Samaj?",
+    options: [
+      "Dayananda Saraswati",
+      "Raja Ram Mohan Roy",
+      "Bal Gangadhar Tilak",
+      "Swami Vivekananda",
+    ],
+    answer: "Dayananda Saraswati",
   },
   {
-    question: "Constitution of India came into force on—",
-    options: ["15th August, 1947", "26th January, 1950", "2nd October, 1948", "30th January, 1948"],
-    answer: "26th January, 1950"
+    question: "Which is the second highest civilian award in India?",
+    options: ["Padma Shri", "Padma Bhushan", "Padma Vibhushan", "Bharat Ratna"],
+    answer: "Padma Vibhushan",
   },
   {
-    question: "Who wrote 'Jana Gana Mana'?",
-    options: ["Bankim Chandra", "Rabindranath Tagore", "Manna Dey", "Nazrul Islam"],
-    answer: "Rabindranath Tagore"
+    question: "Which mountain range is also called the 'Roof of the World'?",
+    options: ["Himalayas", "Karakoram", "Pamirs", "Alps"],
+    answer: "Pamirs",
   },
   {
-    question: "India is divided into how many states (as of 2024)?",
-    options: ["28", "29", "30", "31"],
-    answer: "28"
+    question: "Which dynasty built the famous Konark Sun Temple?",
+    options: ["Maurya", "Mughal", "Ganga", "Gupta"],
+    answer: "Ganga",
   },
   {
-    question: "Which is not a fundamental right?",
-    options: ["Right to Freedom", "Right to Employment", "Right to Equality", "Right to Education"],
-    answer: "Right to Employment"
+    question: "The Quit India Movement was launched in—",
+    options: ["1920", "1930", "1942", "1947"],
+    answer: "1942",
   },
   {
-    question: "Capital of West Bengal is—",
-    options: ["Howrah", "Siliguri", "Kolkata", "Asansol"],
-    answer: "Kolkata"
+    question: "The Indian Constitution provides voting rights at the age of—",
+    options: ["16 years", "18 years", "21 years", "25 years"],
+    answer: "18 years",
   },
   {
-    question: "Rivers in West Bengal flow into—",
-    options: ["Bay of Bengal", "Red Sea", "Arabian Sea", "Indian Ocean"],
-    answer: "Bay of Bengal"
+    question: "Which Indian leader gave the slogan 'Jai Jawan Jai Kisan'?",
+    options: [
+      "Jawaharlal Nehru",
+      "Lal Bahadur Shastri",
+      "Indira Gandhi",
+      "Atal Bihari Vajpayee",
+    ],
+    answer: "Lal Bahadur Shastri",
   },
   {
-    question: "Location of Victoria Memorial Hall?",
-    options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
-    answer: "Kolkata"
+    question: "Which continent is known as 'Dark Continent'?",
+    options: ["Asia", "Africa", "Australia", "Europe"],
+    answer: "Africa",
   },
   {
-    question: "Largest planet in the solar system?",
-    options: ["Mars", "Earth", "Jupiter", "Saturn"],
-    answer: "Jupiter"
+    question: "Which state is called the 'Rice Bowl of India'?",
+    options: ["Punjab", "Kerala", "Andhra Pradesh", "West Bengal"],
+    answer: "Andhra Pradesh",
   },
   {
-    question: "Which religion was first born in India?",
-    options: ["Buddhism", "Hinduism", "Christianity", "Islam"],
-    answer: "Hinduism"
+    question: "In which year was the Indian National Congress founded?",
+    options: ["1885", "1905", "1919", "1929"],
+    answer: "1885",
   },
   {
-    question: "Who founded the Maurya Empire?",
-    options: ["Chandragupta Maurya", "Ashoka", "Bindusara", "Harshavardhana"],
-    answer: "Chandragupta Maurya"
+    question: "Who was the first Nobel laureate of India?",
+    options: [
+      "Rabindranath Tagore",
+      "C. V. Raman",
+      "Amartya Sen",
+      "Mother Teresa",
+    ],
+    answer: "Rabindranath Tagore",
   },
   {
-    question: "Famous folk dance of West Bengal?",
-    options: ["Bihu", "Garba", "Chhau", "Ghoomar"],
-    answer: "Chhau"
+    question: "Which day is celebrated as Constitution Day in India?",
+    options: ["26th January", "15th August", "26th November", "2nd October"],
+    answer: "26th November",
   },
   {
-    question: "Which is not a Union Territory of India?",
-    options: ["Puducherry", "Andaman & Nicobar", "Jharkhand", "Ladakh"],
-    answer: "Jharkhand"
-  }
+    question: "India's national song 'Vande Mataram' was composed by—",
+    options: [
+      "Rabindranath Tagore",
+      "Bankim Chandra Chattopadhyay",
+      "Ishwar Chandra Vidyasagar",
+      "Nazrul Islam",
+    ],
+    answer: "Bankim Chandra Chattopadhyay",
+  },
 ];
-
-
