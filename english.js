@@ -1,154 +1,170 @@
 window.englishQuestions = [
   {
-    question: "The hotel is adjacent _______ the station.",
-    options: ["against", "to", "with", "beside"],
-    answer: "to"
+    question: "Choose the correct synonym for 'benevolent':",
+    options: ["kind", "cruel", "selfish", "greedy"],
+    answer: "kind",
   },
   {
-    question: "What is a synonym for 'pester'?",
-    options: ["fight", "silent", "sad", "annoy"],
-    answer: "annoy"
+    question: "Antonym of 'tiny' is",
+    options: ["little", "giant", "small", "minimal"],
+    answer: "giant",
   },
   {
-    question: "Where is the error: The deep depression (A)/ of the Bay of Bengal intensified (B)/ into a cyclone (C)/. No error (D).",
+    question: "She has been working here _______ 2015.",
+    options: ["since", "for", "in", "on"],
+    answer: "since",
+  },
+  {
+    question: "Pick the correctly spelled word:",
+    options: ["accomodate", "accommodate", "acommodate", "accomodete"],
+    answer: "accommodate",
+  },
+  {
+    question:
+      "Which part has an error: The teacher (A)/ as well as the students (B)/ were invited to the function (C)/. No error (D).",
     options: ["A", "B", "C", "D"],
-    answer: "B"
+    answer: "B",
   },
   {
-    question: "Do not leave (A)/ your seat before (B)/ finishing the task (C)/. No error (D).",
+    question: "What is the plural of 'criterion'?",
+    options: ["criterions", "criteries", "criteria", "criterias"],
+    answer: "criteria",
+  },
+  {
+    question: "Identify the figure of speech: 'Time is a thief.'",
+    options: ["Metaphor", "Simile", "Irony", "Alliteration"],
+    answer: "Metaphor",
+  },
+  {
+    question: "What is a synonym for 'arduous'?",
+    options: ["easy", "difficult", "gentle", "soft"],
+    answer: "difficult",
+  },
+  {
+    question: "What is the antonym of 'friendship'?",
+    options: ["bond", "enmity", "trust", "brotherhood"],
+    answer: "enmity",
+  },
+  {
+    question: "Fill in the blank: If it rains, we _______ at home.",
+    options: ["stayed", "staying", "will stay", "has stayed"],
+    answer: "will stay",
+  },
+  {
+    question: "Correct article: He is _____ honest man.",
+    options: ["a", "an", "the", "no article"],
+    answer: "an",
+  },
+  {
+    question: "Change into passive: 'She sings a song.'",
+    options: [
+      "A song is sung by her",
+      "A song are sung by her",
+      "A song was sung by her",
+      "A song sung by her",
+    ],
+    answer: "A song is sung by her",
+  },
+  {
+    question: "Synonym of 'consume' is",
+    options: ["eat", "throw", "destroy", "buy"],
+    answer: "eat",
+  },
+  {
+    question: "Antonym of 'victory' is",
+    options: ["win", "success", "defeat", "loss"],
+    answer: "defeat",
+  },
+  {
+    question: "What is the past participle form of 'swim'?",
+    options: ["swim", "swam", "swum", "swiming"],
+    answer: "swum",
+  },
+  {
+    question: "Choose the correctly punctuated option:",
+    options: [
+      "Its raining today.",
+      "It's raining today",
+      "Its' raining today.",
+      "Its raining, today",
+    ],
+    answer: "It's raining today",
+  },
+  {
+    question:
+      "Identify the error: He do not (A)/ know how to (B)/ solve this problem (C)/. No error (D).",
     options: ["A", "B", "C", "D"],
-    answer: "D"
+    answer: "A",
   },
   {
-    question: "\"Was it for this the clay grew tall?\" is an example of",
-    options: ["metaphor", "metonymy", "irony", "personification"],
-    answer: "metonymy"
+    question: "Select the synonym of 'rapid':",
+    options: ["slow", "swift", "lazy", "mild"],
+    answer: "swift",
   },
   {
-    question: "According to the old saying, we should drink water out of our own ________.",
-    options: ["well", "cistern", "barrel", "pot"],
-    answer: "cistern"
+    question: "Select the antonym of 'hopeful':",
+    options: ["cheerful", "optimistic", "hopeless", "joyful"],
+    answer: "hopeless",
   },
   {
-    question: "Where is the error: Samir has to (A)/ trudge over the (B)/ steep mountain path. (C)/ No error. (D).",
-    options: ["A", "B", "C", "D"],
-    answer: "B"
+    question: "The past tense of 'catch' is",
+    options: ["catched", "caught", "catching", "catches"],
+    answer: "caught",
   },
   {
-    question: "Select the correct spelling:",
-    options: ["apalling", "appalling", "appeling", "appealing"],
-    answer: "appalling"
+    question: "Correct preposition: He is fond _______ music.",
+    options: ["with", "of", "for", "on"],
+    answer: "of",
   },
   {
-    question: "Select the correct spelling:",
-    options: ["assimilete", "asimilate", "assimilate", "assamalate"],
-    answer: "assimilate"
+    question:
+      "Identify the figure of speech: 'Like a lion in the fight, he fought bravely.'",
+    options: ["Metaphor", "Simile", "Irony", "Personification"],
+    answer: "Simile",
   },
   {
-    question: "Hardly had the girl _______ writing, when the teacher collected her answer script.",
-    options: ["finishing", "finished", "finishes", "finish"],
-    answer: "finished"
+    question: "Change into indirect: She said, 'I like apples.'",
+    options: [
+      "She said that she likes apples.",
+      "She said that she liked apples.",
+      "She said she like apples.",
+      "She said she liking apples.",
+    ],
+    answer: "She said that she liked apples.",
   },
   {
-    question: "He found the book he ______.",
-    options: ["lost", "is losing", "had lost", "is lost"],
-    answer: "had lost"
+    question: "What is the plural of 'phenomenon'?",
+    options: ["phenomenons", "phenomenona", "phenomena", "phenomens"],
+    answer: "phenomena",
   },
   {
-    question: "What is a synonym for 'conscientious'?",
-    options: ["scrupulous", "rebellious", "mischievous", "ridiculous"],
-    answer: "scrupulous"
+    question: "Antonym of 'ancient' is",
+    options: ["modern", "old", "historic", "classical"],
+    answer: "modern",
   },
   {
-    question: "What is the gender of 'gander'?",
-    options: ["duck", "goose", "drake", "swan"],
-    answer: "goose"
+    question: "Synonym of 'diligent' is",
+    options: ["lazy", "industrious", "careless", "idle"],
+    answer: "industrious",
   },
   {
-    question: "Antonym of 'malice' is",
-    options: ["spite", "benevolence", "intention", "morose"],
-    answer: "benevolence"
+    question: "What is the collective noun for 'cows'?",
+    options: ["herd", "flock", "swarm", "colony"],
+    answer: "herd",
   },
   {
-    question: "Antonym of 'sporadic' is",
-    options: ["continuous", "interval", "decent", "repel"],
-    answer: "continuous"
+    question: "Fill in the blank: Neither she ______ her friend was present.",
+    options: ["nor", "or", "and", "but"],
+    answer: "nor",
   },
   {
-    question: "Pick the correct form: She _______ the homework before leaving.",
-    options: ["finished", "has finish", "finishing", "finish"],
-    answer: "finished"
+    question: "Which one is a correct comparative form?",
+    options: ["more better", "better", "gooder", "most better"],
+    answer: "better",
   },
   {
-    question: "Choose the correct synonym for 'abandon':",
-    options: ["keep", "forsake", "protect", "save"],
-    answer: "forsake"
+    question: "Choose the correctly spelled word:",
+    options: ["definately", "definitely", "definatly", "diffinitely"],
+    answer: "definitely",
   },
-  {
-    question: "Select the correct antonym for 'optimistic':",
-    options: ["pessimistic", "cheerful", "hopeful", "pragmatic"],
-    answer: "pessimistic"
-  },
-  {
-    question: "Identify the figure of speech: 'The wind whispered through the trees.'",
-    options: ["Simile", "Personification", "Metaphor", "Irony"],
-    answer: "Personification"
-  },
-  {
-    question: "The plural of 'analysis' is",
-    options: ["analysises", "analyses", "analysis's", "analysies"],
-    answer: "analyses"
-  },
-  {
-    question: "Select the appropriate phrase: 'It _______ raining for hours.'",
-    options: ["have been", "has been", "was", "were"],
-    answer: "has been"
-  },
-  {
-    question: "Change to passive: 'They eat apples.'",
-    options: ["Apples is eaten", "Apples are eaten", "Apple are eaten", "Apple is eaten"],
-    answer: "Apples are eaten"
-  },
-  {
-    question: "Pick the correctly punctuated sentence:",
-    options: ["Whats your name", "What’s your name?", "Whats' your name?", "What's your name."],
-    answer: "What’s your name?"
-  },
-  {
-    question: "Fill in the blank: Her performance was _______ outstanding.",
-    options: ["quite", "so", "very", "much"],
-    answer: "quite"
-  },
-  {
-    question: "Past tense of 'go' is",
-    options: ["goes", "going", "gone", "went"],
-    answer: "went"
-  },
-  {
-    question: "Word for 'fear of confined spaces':",
-    options: ["acrophobia", "claustrophobia", "aerophobia", "hydrophobia"],
-    answer: "claustrophobia"
-  },
-  {
-    question: "Antonym of 'absurd' is",
-    options: ["unreasonable", "logical", "ridiculous", "inappropriate"],
-    answer: "logical"
-  },
-  {
-    question: "Synonym of 'courage' is",
-    options: ["timidity", "bravery", "laziness", "intolerance"],
-    answer: "bravery"
-  },
-  {
-    question: "Change to indirect: He said, \"I am going home\".",
-    options: ["He said that he is going home.", "He said that he was going home.", "He said he go home.", "He said that I was going home."],
-    answer: "He said that he was going home."
-  },
-  {
-    question: "Fill in the blank: He _________ to the market yesterday.",
-    options: ["go", "goes", "went", "gone"],
-    answer: "went"
-  }
 ];
-
-
