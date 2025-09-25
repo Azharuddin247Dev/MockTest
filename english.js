@@ -1,4 +1,4 @@
-window.englishQuestions = [
+window.englishQuestions = [ 
   // --- Synonyms ---
   { question: "Choose the synonym of 'brave':", options: ["cowardly","courageous","fearful","weak"], answer: "courageous" },
   { question: "Synonym of 'glimpse' is", options: ["look","chance","taste","view"], answer: "view" },
@@ -83,3 +83,4 @@ window.englishQuestions = [
   { question: "Plural of 'tooth' is", options: ["tooths","teeth","toothes","tooth"], answer: "teeth" },
   { question: "Past tense of 'teach' is", options: ["taught","teached","teacht","teach"], answer: "taught" }
 ];
+
