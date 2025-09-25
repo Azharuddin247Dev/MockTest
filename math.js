@@ -1,4 +1,4 @@
-window.mathQuestions = [
+window.mathQuestions = [ 
   // ----- Arithmetic and Number System -----
   {
     question: "What is the place value of 7 in 52743?",
@@ -450,3 +450,4 @@ window.mathQuestions = [
     answer: "10√2",
   },
 ];
+
