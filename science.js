@@ -1,4 +1,4 @@
-window.scienceQuestions = [
+window.scienceQuestions = [ 
   // --- Physics ---
   {
     question: "The unit of electric power is—",
@@ -294,3 +294,4 @@ window.scienceQuestions = [
     answer: "Aryabhata",
   },
 ];
+
