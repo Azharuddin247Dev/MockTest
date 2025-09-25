@@ -1,170 +1,85 @@
 window.englishQuestions = [
-  {
-    question: "Choose the correct synonym for 'benevolent':",
-    options: ["kind", "cruel", "selfish", "greedy"],
-    answer: "kind",
-  },
-  {
-    question: "Antonym of 'tiny' is",
-    options: ["little", "giant", "small", "minimal"],
-    answer: "giant",
-  },
-  {
-    question: "She has been working here _______ 2015.",
-    options: ["since", "for", "in", "on"],
-    answer: "since",
-  },
-  {
-    question: "Pick the correctly spelled word:",
-    options: ["accomodate", "accommodate", "acommodate", "accomodete"],
-    answer: "accommodate",
-  },
-  {
-    question:
-      "Which part has an error: The teacher (A)/ as well as the students (B)/ were invited to the function (C)/. No error (D).",
-    options: ["A", "B", "C", "D"],
-    answer: "B",
-  },
-  {
-    question: "What is the plural of 'criterion'?",
-    options: ["criterions", "criteries", "criteria", "criterias"],
-    answer: "criteria",
-  },
-  {
-    question: "Identify the figure of speech: 'Time is a thief.'",
-    options: ["Metaphor", "Simile", "Irony", "Alliteration"],
-    answer: "Metaphor",
-  },
-  {
-    question: "What is a synonym for 'arduous'?",
-    options: ["easy", "difficult", "gentle", "soft"],
-    answer: "difficult",
-  },
-  {
-    question: "What is the antonym of 'friendship'?",
-    options: ["bond", "enmity", "trust", "brotherhood"],
-    answer: "enmity",
-  },
-  {
-    question: "Fill in the blank: If it rains, we _______ at home.",
-    options: ["stayed", "staying", "will stay", "has stayed"],
-    answer: "will stay",
-  },
-  {
-    question: "Correct article: He is _____ honest man.",
-    options: ["a", "an", "the", "no article"],
-    answer: "an",
-  },
-  {
-    question: "Change into passive: 'She sings a song.'",
-    options: [
-      "A song is sung by her",
-      "A song are sung by her",
-      "A song was sung by her",
-      "A song sung by her",
-    ],
-    answer: "A song is sung by her",
-  },
-  {
-    question: "Synonym of 'consume' is",
-    options: ["eat", "throw", "destroy", "buy"],
-    answer: "eat",
-  },
-  {
-    question: "Antonym of 'victory' is",
-    options: ["win", "success", "defeat", "loss"],
-    answer: "defeat",
-  },
-  {
-    question: "What is the past participle form of 'swim'?",
-    options: ["swim", "swam", "swum", "swiming"],
-    answer: "swum",
-  },
-  {
-    question: "Choose the correctly punctuated option:",
-    options: [
-      "Its raining today.",
-      "It's raining today",
-      "Its' raining today.",
-      "Its raining, today",
-    ],
-    answer: "It's raining today",
-  },
-  {
-    question:
-      "Identify the error: He do not (A)/ know how to (B)/ solve this problem (C)/. No error (D).",
-    options: ["A", "B", "C", "D"],
-    answer: "A",
-  },
-  {
-    question: "Select the synonym of 'rapid':",
-    options: ["slow", "swift", "lazy", "mild"],
-    answer: "swift",
-  },
-  {
-    question: "Select the antonym of 'hopeful':",
-    options: ["cheerful", "optimistic", "hopeless", "joyful"],
-    answer: "hopeless",
-  },
-  {
-    question: "The past tense of 'catch' is",
-    options: ["catched", "caught", "catching", "catches"],
-    answer: "caught",
-  },
-  {
-    question: "Correct preposition: He is fond _______ music.",
-    options: ["with", "of", "for", "on"],
-    answer: "of",
-  },
-  {
-    question:
-      "Identify the figure of speech: 'Like a lion in the fight, he fought bravely.'",
-    options: ["Metaphor", "Simile", "Irony", "Personification"],
-    answer: "Simile",
-  },
-  {
-    question: "Change into indirect: She said, 'I like apples.'",
-    options: [
-      "She said that she likes apples.",
-      "She said that she liked apples.",
-      "She said she like apples.",
-      "She said she liking apples.",
-    ],
-    answer: "She said that she liked apples.",
-  },
-  {
-    question: "What is the plural of 'phenomenon'?",
-    options: ["phenomenons", "phenomenona", "phenomena", "phenomens"],
-    answer: "phenomena",
-  },
-  {
-    question: "Antonym of 'ancient' is",
-    options: ["modern", "old", "historic", "classical"],
-    answer: "modern",
-  },
-  {
-    question: "Synonym of 'diligent' is",
-    options: ["lazy", "industrious", "careless", "idle"],
-    answer: "industrious",
-  },
-  {
-    question: "What is the collective noun for 'cows'?",
-    options: ["herd", "flock", "swarm", "colony"],
-    answer: "herd",
-  },
-  {
-    question: "Fill in the blank: Neither she ______ her friend was present.",
-    options: ["nor", "or", "and", "but"],
-    answer: "nor",
-  },
-  {
-    question: "Which one is a correct comparative form?",
-    options: ["more better", "better", "gooder", "most better"],
-    answer: "better",
-  },
-  {
-    question: "Choose the correctly spelled word:",
-    options: ["definately", "definitely", "definatly", "diffinitely"],
-    answer: "definitely",
-  },
+  // --- Synonyms ---
+  { question: "Choose the synonym of 'brave':", options: ["cowardly","courageous","fearful","weak"], answer: "courageous" },
+  { question: "Synonym of 'glimpse' is", options: ["look","chance","taste","view"], answer: "view" },
+  { question: "Synonym of 'rapid' is", options: ["slow","swift","lazy","mild"], answer: "swift" },
+  { question: "Choose synonym of 'generous':", options: ["mean","kind-hearted","selfish","cruel"], answer: "kind-hearted" },
+  { question: "Synonym of 'enormous' is", options: ["huge","tiny","small","narrow"], answer: "huge" },
+  { question: "Synonym of 'attempt' is", options: ["try","fail","leave","ignore"], answer: "try" },
+  { question: "Synonym of 'ancient' is", options: ["modern","old","latest","recent"], answer: "old" },
+  { question: "Synonym of 'joyful' is", options: ["sad","cheerful","angry","worried"], answer: "cheerful" },
+  { question: "Synonym of 'purchase' is", options: ["sell","buy","cost","trade"], answer: "buy" },
+  { question: "Synonym of 'amiable' is", options: ["rude","friendly","angry","serious"], answer: "friendly" },
+
+  // --- Antonyms ---
+  { question: "Antonym of 'brave' is", options: ["courageous","cowardly","fearless","bold"], answer: "cowardly" },
+  { question: "Antonym of 'harsh' is", options: ["soft","loud","tough","strict"], answer: "soft" },
+  { question: "Antonym of 'victory' is", options: ["success","loss","win","glory"], answer: "loss" },
+  { question: "Antonym of 'optimistic' is", options: ["hopeful","cheerful","pessimistic","happy"], answer: "pessimistic" },
+  { question: "Antonym of 'permit' is", options: ["allow","forbid","accept","agree"], answer: "forbid" },
+  { question: "Antonym of 'sincere' is", options: ["honest","loyal","false","insincere"], answer: "insincere" },
+  { question: "Antonym of 'absence' is", options: ["present","gone","return","start"], answer: "present" },
+  { question: "Antonym of 'wise' is", options: ["foolish","clever","smart","brilliant"], answer: "foolish" },
+  { question: "Antonym of 'rise' is", options: ["climb","go","fall","grow"], answer: "fall" },
+  { question: "Antonym of 'truth' is", options: ["lie","justice","falsehood","right"], answer: "falsehood" },
+
+  // --- Spellings ---
+  { question: "Choose the correctly spelled word:", options: ["seperate","separate","seperete","seperat"], answer: "separate" },
+  { question: "Pick the correct spelling:", options: ["occurrence","occurence","occurance","ocurence"], answer: "occurrence" },
+  { question: "Correct spelling is:", options: ["recieve","receive","receeve","resieve"], answer: "receive" },
+  { question: "Choose correct spelling:", options: ["commitee","committee","commite","commity"], answer: "committee" },
+  { question: "Correct spelling:", options: ["definate","definite","defanate","defanite"], answer: "definite" },
+  { question: "Spelling of 'beautiful' is:", options: ["beutiful","beautifull","beautiful","butiful"], answer: "beautiful" },
+  { question: "Correct spelling of 'address' is:", options: ["adress","address","addres","adras"], answer: "address" },
+  { question: "Choose the correct spelling:", options: ["enviroment","environment","envirnment","enviornment"], answer: "environment" },
+  { question: "Pick correct spelling of 'business':", options: ["bussiness","busines","business","bisness"], answer: "business" },
+  { question: "Correct spelling:", options: ["neccessary","nesessary","necessary","nesesary"], answer: "necessary" },
+
+  // --- Tense & Grammar ---
+  { question: "He ______ to London yesterday.", options: ["go","goes","went","gone"], answer: "went" },
+  { question: "She ______ her homework before going out.", options: ["finished","finishes","finishing","finish"], answer: "finished" },
+  { question: "By next month, they ______ the project.", options: ["complete","will have completed","completes","completed"], answer: "will have completed" },
+  { question: "I usually ______ up at 6 a.m.", options: ["wake","wakes","woke","waking"], answer: "wake" },
+  { question: "The sun _____ in the east.", options: ["rise","rises","rising","rose"], answer: "rises" },
+  { question: "If he ______ hard, he will pass.", options: ["study","studied","studies","studying"], answer: "studies" },
+  { question: "He said that he ______ coming tomorrow.", options: ["is","was","were","be"], answer: "was" },
+  { question: "He ______ here since 2010.", options: ["is","was","has been","have been"], answer: "has been" },
+  { question: "She ______ already left when I came.", options: ["has","had","is","was"], answer: "had" },
+  { question: "They ______ playing cricket now.", options: ["was","are","is","be"], answer: "are" },
+
+  // --- Articles & Prepositions ---
+  { question: "He bought ______ European car.", options: ["a","an","the","no article"], answer: "a" },
+  { question: "Mount Everest is ______ highest peak in the world.", options: ["a","an","the","no article"], answer: "the" },
+  { question: "He is good ______ mathematics.", options: ["in","at","on","with"], answer: "at" },
+  { question: "We depend ______ our parents.", options: ["in","on","at","with"], answer: "on" },
+  { question: "She divided the cake ______ two parts.", options: ["in","into","on","with"], answer: "into" },
+  { question: "The boy was accused ______ stealing.", options: ["for","with","of","to"], answer: "of" },
+  { question: "The train arrived ______ 5 o’clock.", options: ["at","on","in","to"], answer: "at" },
+  { question: "We have been waiting here ______ 2 hours.", options: ["for","since","in","on"], answer: "for" },
+  { question: "My friend lives ______ Kolkata.", options: ["at","in","on","to"], answer: "in" },
+  { question: "He walked ______ the road carefully.", options: ["on","over","across","in"], answer: "across" },
+
+  // --- Figures of Speech ---
+  { question: "Identify the figure: 'Her smile is as bright as the sun.'", options: ["Simile","Metaphor","Irony","Alliteration"], answer: "Simile" },
+  { question: "Figure of speech: 'The classroom was a zoo.'", options: ["Metaphor","Simile","Personification","Irony"], answer: "Metaphor" },
+  { question: "'The lightning danced across the sky.'", options: ["Personification","Metaphor","Simile","Irony"], answer: "Personification" },
+  { question: "'She sells seashells by the seashore.'", options: ["Alliteration","Simile","Metaphor","Irony"], answer: "Alliteration" },
+  { question: "'Silence roared loudly in the room.'", options: ["Irony","Personification","Oxymoron","Hyperbole"], answer: "Oxymoron" },
+  { question: "'I’m so hungry I could eat a horse.'", options: ["Hyperbole","Irony","Simile","Metaphor"], answer: "Hyperbole" },
+  { question: "'The child is the father of the man.'", options: ["Paradox","Irony","Metaphor","Personification"], answer: "Paradox" },
+  { question: "'Parting is such sweet sorrow.'", options: ["Paradox","Oxymoron","Irony","Simile"], answer: "Oxymoron" },
+  { question: "'He kicked the bucket' is an example of", options: ["Idiom","Simile","Irony","Metaphor"], answer: "Idiom" },
+  { question: "'The pen is mightier than the sword.'", options: ["Metonymy","Metaphor","Simile","Personification"], answer: "Metonymy" },
+
+  // --- Voice, Narration, Misc ---
+  { question: "Change into passive: 'They cleaned the room.'", options: ["The room is cleaned","The room was cleaned","The room were cleaned","The room had cleaned"], answer: "The room was cleaned" },
+  { question: "Passive of: 'He is writing a letter.'", options: ["A letter was written","A letter is written","A letter is being written","A letter has been written"], answer: "A letter is being written" },
+  { question: "Indirect speech: He said, 'I will go home.'", options: ["He said he will go home","He said he would go home","He said that I would go home","He said that he is going home"], answer: "He said he would go home" },
+  { question: "Indirect speech: She said, 'I am reading.'", options: ["She said she was reading","She said she is reading","She said I was reading","She said I am reading"], answer: "She said she was reading" },
+  { question: "Indirect speech: He said, 'Did you do it?'", options: ["He asked if I had done it","He asked did you do it","He asked that I did it","He asked was it done"], answer: "He asked if I had done it" },
+  { question: "Correct comparative degree: tall → ?", options: ["taller","most tall","more tall","tallest"], answer: "taller" },
+  { question: "Correct superlative degree: good → ?", options: ["better","goodest","best","more good"], answer: "best" },
+  { question: "Plural of 'child' is", options: ["childs","childes","children","child"], answer: "children" },
+  { question: "Plural of 'tooth' is", options: ["tooths","teeth","toothes","tooth"], answer: "teeth" },
+  { question: "Past tense of 'teach' is", options: ["taught","teached","teacht","teach"], answer: "taught" }
 ];
