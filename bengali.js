@@ -1,4 +1,4 @@
-window.bengaliQuestions = [
+window.bengaliQuestions = [ 
   // ----- Literature & Authors -----
   {
     question: "‘গীতাঞ্জলি’ গ্রন্থের রচয়িতা কে?",
@@ -282,3 +282,4 @@ window.bengaliQuestions = [
     answer: "কান্না",
   },
 ];
+
